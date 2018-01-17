@@ -1,0 +1,337 @@
+$border-color: #e0e0e0;
+
+body{
+  font-family: 'Source Sans Pro', sans-serif;
+  background-color: #6DB3F2;
+  background-image: url('../img/bg-img.png');
+}
+
+#maincontainer0{
+  max-width: 1020px;
+  background-color: rgba(0, 0, 0, 0.05);
+  padding: 8px;
+  border-radius: 5px;
+  margin: auto;
+  margin-top: 4vw;
+}
+
+#maincontainer{
+  max-width: 980px;
+  background-color: white;
+  padding: 20px;
+  border-radius: 5px;
+  margin: auto;
+
+  -webkit-box-shadow: 0 0 1px 1px $border-color;
+  -moz-box-shadow: 0 0 1px 1px $border-color;
+  box-shadow: 0 0 1px 1px $border-color;
+}
+
+#maintitle{
+  font-size: 60px;
+  font-weight: lighter;
+  color: #2288b7;
+  text-align: center;
+}
+
+#subtitle{
+  font-size: 17px;
+  font-weight: normal;
+  color: #3b3b3b;
+  text-align: center;
+  padding: 0 0 20px 0;
+
+  max-width: 940px;
+  margin: auto;
+  border-style: solid;
+  border-color: $border-color;
+  border-width: 0px 0px 1px 0px;
+}
+
+input[type=text]{
+  width: 370px;
+  padding: 8px;
+  //display: inline-block;
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  //box-sizing: border-box;
+  float: left;
+}
+
+#search{
+  text-align: left;
+  padding: 16px 0px 16px 0px;
+  color: #555555;
+  display: table;
+  margin: 0 auto;
+}
+
+::placeholder {
+  color: #999999;
+  opacity: 1; /* Firefox */
+}
+
+:-ms-input-placeholder { /* Internet Explorer 10-11 */
+  color: #999999;
+}
+
+:-ms-input-placeholder { /* Microsoft Edge */
+  color: #999999;
+}
+
+//select style change (nie jestem pewien jak wyswietla sie to okno na systemie mac)
+select{
+  padding: 8px 8px 6px 8px;
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  float: left;
+  margin-left: 10px;
+}
+
+//table style
+table {
+  font-family: arial, sans-serif;
+  font-size: 12px;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  border-style: solid;
+  border-color: $border-color;
+  border-width: 1px 1px 0px 0px;
+  text-align: left;
+  padding: 11px;
+  color: #555555;
+}
+
+th{
+  padding: 23px;
+  overflow: hidden;
+  background-color: #eaecec;
+}
+
+tr:nth-child(even) {
+  background-color: #f8f8f8;
+}
+
+tr:hover{
+  background-color: #eee;
+}
+
+thead{
+  border-radius: 25px;
+  color: #666666;
+}
+
+#roundtable{
+  border-radius: 5px;
+  border: 1px solid $border-color;
+  overflow: hidden;
+  max-width: 940px;
+  margin: auto;
+}
+
+//pagination buttons style
+@mixin pagbutton($color-from, $color-to) {
+  background-image: -webkit-linear-gradient(top, $color-from, $color-to);
+  background-image: -moz-linear-gradient(top, $color-from, $color-to);
+  background-image: -ms-linear-gradient(top, $color-from, $color-to);
+  background-image: -o-linear-gradient(top, $color-from, $color-to);
+  background-image: linear-gradient(to bottom, $color-from, $color-to);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #717171;
+  font-size: 12px;
+  padding: 6px 10px 6px 10px;
+  border: solid #bababa 1px;
+  text-decoration: none;
+  font-weight: bold;
+  margin-left: 5px;
+}
+
+.paginationBtn {
+  @include pagbutton(#ffffff,#ebebeb);
+  color: #717171;
+}
+
+.paginationBtn:hover {
+  @include pagbutton(#f5f5f5,#e3e3e3);
+}
+
+//clicked button style
+.clickedBtn{
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #f2f2f2;
+  font-size: 12px;
+  background: #686868;
+  padding: 5px 10px 6px 10px;
+  border: solid #565656 1px;
+  text-decoration: none;
+  text-shadow: 1px 1px 1px #666666;
+  margin-left: 5px;
+  vertical-align: bottom;
+}
+
+
+#paggination{
+  padding: 20px 0 0 0;
+  display: table;
+  margin: 0 auto;
+}
+
+
+input, button, submit { border:none; }
+
+//buttons style
+@mixin button($color-from, $color-to) {
+  background-image: -webkit-linear-gradient(top, $color-from, $color-to);
+  background-image: -moz-linear-gradient(top, $color-from, $color-to);
+  background-image: -ms-linear-gradient(top, $color-from, $color-to);
+  background-image: -o-linear-gradient(top, $color-from, $color-to);
+  background-image: linear-gradient(to bottom, $color-from, $color-to);
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  font-family: Arial;
+  font-size: 12px;
+  padding: 8px 20px 8px 20px;
+  text-decoration: none;
+  font-weight: 800;
+  margin-left: 10px;
+}
+
+
+#searchButton {
+  @include button(#6ba1f3,#2278f0);
+  color: #ffffff;
+}
+
+#searchButton:hover {
+  @include button(#5390ed,#1f72de);
+}
+
+#resetButton {
+  @include button(#f1f1f1,#c4c4c4);
+  color: #494949;
+}
+
+#resetButton:hover {
+  @include button(#e8e8e8,#bdbdbd);
+}
+
+//pound style
+@mixin pound($color-from, $color-to) {
+  background-image: -webkit-linear-gradient(top, $color-from, $color-to);
+  background-image: -moz-linear-gradient(top, $color-from, $color-to);
+  background-image: -ms-linear-gradient(top, $color-from, $color-to);
+  background-image: -o-linear-gradient(top, $color-from, $color-to);
+  background-image: linear-gradient(to bottom, $color-from, $color-to);
+  -webkit-border-radius: 60px;
+  -moz-border-radius: 60px;
+  border-radius: 60px;
+  font-family: Arial;
+  font-size: 15px;
+  padding: 2px 8px 2px 8px;
+  border: solid #8b8b8b 1px;
+  text-decoration: none;
+  font-weight: 800;
+  width: 10px;
+  height: 22px;
+  float: left;
+  margin-left: 5px;
+}
+
+.pound-Empty{
+  @include pound(#fefefe,#dadcdc);
+  color: #666666;
+}
+
+.pound-Full{
+  @include pound(#64c0ea,#4c95dc);
+  color: #ffffff;
+}
+
+#poundrating{
+  width: 180px;
+  padding-left: 20px;
+  min-width: 100px;
+}
+
+#referencetab{
+  width: 105px;
+  text-align:center;
+}
+
+#valuetab{
+  width: 70px;
+  text-align: right;
+  padding-right: 35px;
+}
+
+#supliertab{
+  padding-left: 25px;
+  min-width: 100px;
+}
+
+//modal window style
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  margin-top: 6vw;
+  padding: 20px;
+  border: 1px solid #888;
+  max-width: 600px;
+  border-radius: 5px;
+  border: 1px solid $border-color;
+  -webkit-box-shadow: 0 0 5px 3px #777;
+  -moz-box-shadow: 0 0 5px 3px #777;
+  box-shadow: 0 0 5px 3px #777;
+}
+
+/* The Close Button */
+.close {
+  color: #aaaaaa;
+  float: right;
+  font-size: 15px;
+  font-weight: bold;
+  padding:0px;
+  margin-left: 10px;
+}
+
+.close:hover,
+.close:focus {
+  color: #000;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modaltable tr td{
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  padding:15px;
+}
+
+.modal-table{
+  border: 1px solid $border-color;
+  border-radius: 3px;
+  overflow: hidden;
+}
