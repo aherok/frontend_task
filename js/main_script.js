@@ -11,16 +11,15 @@ $(document).ready(function(){
 
 //get text from searchtext html input to search suppliers
 function searchSuppliers() {
-    var x = document.getElementById("inputText").value;
+    var x = $("#inputText")[0].value;
     sourcelink = apilink;
     return x;
 }
 
 //serching by rates
 function ratingFunction(){
-    var x = document.getElementById("inputrating").value;
+    var x = $("#inputrating")[0].value;
     sourcelink = apilink;
-    //console.log(x);
     return x;
 }
 
@@ -42,8 +41,8 @@ function pagesFuntion(pagtab){
 
 //reset to basic sourcelink
 function resetFuntion(){
-    document.getElementById('inputText').value = '';
-    document.getElementById('inputrating').value = 0;
+    $('#inputText')[0].value = '';
+    $('#inputrating')[0].value = 0;
     sourcelink = apilink;
 }
 
@@ -58,40 +57,40 @@ function reciveData(){
         //clear all before data comes in
         $("#maintable").html("");
         for(var i = 0; i<result.payments.length ; i++) {
-            $("#maintable").append("<tr><td id='supliertab'>" + result.payments[i].payment_supplier + "</td><td id='poundrating'>" + drawPounds(result.payments[i].payment_cost_rating)
-                + "</td><td id='referencetab'>" + result.payments[i].payment_ref + "</td><td id = 'valuetab'>" + '£' + numeral(result.payments[i].payment_amount).format('0,0') + " </td> ");
+            $("#maintable").append("<tr><td id='supliertab'>" + result.payments[i].payment_supplier
+                + "</td><td id='poundrating'>" + drawPounds(result.payments[i].payment_cost_rating)
+                + "</td><td id='referencetab'>" + result.payments[i].payment_ref
+                + "</td><td id = 'valuetab'>" + '£' + numeral(result.payments[i].payment_amount).format('0,0')
+                + "</td> ");
         }
 
-        //buttons from - to - current
-        var btnFrom = result.pagination.from;
-        var btnTo = result.pagination.to;
-        var currentlocation = result.pagination.current;
-        //pages buttons clear
-        $("#paggination").html("");
+                //pages buttons clear
+                $("#paggination").html("");
 
-        //left button
-        if(result.pagination.left == true){ //active button
-            $("#paggination").append("<button class='paginationBtn' onclick=\"arrowFunction('L'," + currentlocation + ")\">\<\</button>")
-        }
-        else{ //button will not respond but will be displayed
-            $("#paggination").append("<button class='paginationBtn'>\<\</button>")
-        }
-        //show buttons and higlight site where i am
-        for(var i = btnFrom; i < btnTo ; i++){
-            if(result.pagination.current == i){
-                $("#paggination").append("<button class='clickedBtn'>" + Number(i+1) + "</button>")
-            }
-            else{
-                $("#paggination").append("<button class='paginationBtn' onclick=\"pagesFuntion("+i+")\">" + Number(i+1) + "</button>")
-            }
-        }
-        //right button
-        if(result.pagination.right == true){ //active button
-            $("#paggination").append("<button class='paginationBtn' onclick=\"arrowFunction('R'," + currentlocation + ")\">\>\</button>")
-        }
-        else{//button will not respond but will be displayed
-            $("#paggination").append("<button class='paginationBtn'>\>\</button>")
-        }
+                //left button
+                if(result.pagination.left ){ //active button
+                    $("#paggination").append("<button class='paginationBtn' onclick=\"arrowFunction('L'," + result.pagination.current + ")\">\<\</button>")
+                }
+                else{ //button will not respond but will be displayed
+                    $("#paggination").append("<button class='paginationBtn'>\<\</button>")
+                }
+                //show buttons and higlight site where i am
+                for(var i = result.pagination.from; i < result.pagination.to ; i++){
+                    if(result.pagination.current == i){
+                        $("#paggination").append("<button class='clickedBtn'>" + Number(i+1) + "</button>")
+                    }
+                    else{
+                        $("#paggination").append("<button class='paginationBtn' onclick=\"pagesFuntion("+i+")\">" + Number(i+1) + "</button>")
+                    }
+                }
+                //right button
+                if(result.pagination.right){ //active button
+                    $("#paggination").append("<button class='paginationBtn' onclick=\"arrowFunction('R'," + result.pagination.current + ")\">\>\</button>")
+                }
+                else{//button will not respond but will be displayed
+                    $("#paggination").append("<button class='paginationBtn'>\>\</button>")
+                }
+
         //add handler for popup message
         addRowHandlers();
     });
@@ -100,28 +99,26 @@ function reciveData(){
 //draw graphic pounds
 function drawPounds(a){
     var rating = "";
-    for(var i = 0; i<5;i++){
-        if(i>=a){
-            rating = rating + '<div class=\"pound-Empty\">£</div>';
-        }else{
-            rating = rating + '<div class=\"pound-Full\">£</div>';
+    if($( window ).width() > 768) { //for rwd
+        for (var i = 0; i < 5; i++) {
+            if (i >= a) {
+                rating = rating + '<div class=\"pound-Empty\">£</div>';
+            } else {
+                rating = rating + '<div class=\"pound-Full\">£</div>';
+            }
         }
+    }
+    else{
+        rating = a;
     }
     return rating;
 }
 
 //add popup message on table
 function addRowHandlers() {
-    // Get the modal
-    var modal = document.getElementById('myModal');
-
-// Get the button that opens the modal
-    var btn = document.getElementById("myBtn");
-
-// Get the <span> element that closes the modal
-    var span = document.getElementsByClassName("close")[0];
-
-    var rows = document.getElementById("tableId").rows;
+    var modal = $('#myModal')[0];
+    var span = $('.close')[0];
+    var rows = $('#tableId')[0].rows;
 
     for (i = 0; i < rows.length; i++) {
         rows[i].onclick = function(){ return function(){
@@ -131,9 +128,8 @@ function addRowHandlers() {
             $( "td.modalbox-ref" ).html( this.cells[2].innerHTML );
             $( "td.modalbox-value" ).html( this.cells[3].innerHTML );
 
-
             modal.style.display = "block";
-            // When the user clicks on <span> (x), close the modal
+            // When the user clicks on close , close modal
             span.onclick = function() {
                 modal.style.display = "none";
             }
