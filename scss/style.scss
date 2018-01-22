@@ -1,8 +1,22 @@
+@mixin prefix($property, $value, $prefixes: ()) {
+  @each $prefix in $prefixes {
+    #{'-' + $prefix + '-' + $property}: $value;
+  }
+  #{$property}: $value;
+}
+
+@mixin mixin-linear-gradient($top, $color-from, $color-to) {
+  background-image: -webkit-linear-gradient($top, $color-from, $color-to);
+  background-image: -moz-linear-gradient($top, $color-from, $color-to);
+  background-image: -ms-linear-gradient($top, $color-from, $color-to);
+  background-image: -o-linear-gradient($top, $color-from, $color-to);
+  background-image: linear-gradient($top, $color-from, $color-to);
+}
+
 $border-color: #e0e0e0;
 
 body{
   font-family: 'Source Sans Pro', sans-serif;
-  background-color: #6DB3F2;
   background-image: url('../img/bg-img.png');
 }
 
@@ -11,8 +25,7 @@ body{
   background-color: rgba(0, 0, 0, 0.05);
   padding: 8px;
   border-radius: 5px;
-  margin: auto;
-  margin-top: 4vw;
+  margin: 4vw auto auto auto;
 }
 
 #maincontainer{
@@ -21,10 +34,7 @@ body{
   padding: 20px;
   border-radius: 5px;
   margin: auto;
-
-  -webkit-box-shadow: 0 0 1px 1px $border-color;
-  -moz-box-shadow: 0 0 1px 1px $border-color;
-  box-shadow: 0 0 1px 1px $border-color;
+  @include prefix(box-shadow, 0 0 1px 1px $border-color,webkit moz ms o);
 }
 
 #maintitle{
@@ -43,24 +53,21 @@ body{
 
   max-width: 940px;
   margin: auto;
-  border-style: solid;
-  border-color: $border-color;
-  border-width: 0px 0px 1px 0px;
+  border: solid $border-color;
+  border-width: 0 0 1px 0;
 }
 
 input[type=text]{
   width: 370px;
-  padding: 8px;
-  //display: inline-block;
+  padding: 7px;
   border: 1px solid $border-color;
-  border-radius: 3px;
-  //box-sizing: border-box;
+  @include prefix(border-radius,3px,webkit moz);
   float: left;
 }
 
 #search{
   text-align: left;
-  padding: 16px 0px 16px 0px;
+  padding: 16px 0 16px 0;
   color: #555555;
   display: table;
   margin: 0 auto;
@@ -79,11 +86,11 @@ input[type=text]{
   color: #999999;
 }
 
-//select style change (nie jestem pewien jak wyswietla sie to okno na systemie mac)
+//select style change (nie jestem pewien jak wyswietla sie to pole na systemie mac)
 select{
-  padding: 8px 8px 6px 8px;
+  padding: 7px 7px 5px 7px;
   border: 1px solid $border-color;
-  border-radius: 3px;
+  @include prefix(border-radius,3px,webkit moz);
   float: left;
   margin-left: 10px;
 }
@@ -99,7 +106,7 @@ table {
 td {
   border-style: solid;
   border-color: $border-color;
-  border-width: 1px 1px 0px 0px;
+  border-width: 1px 1px 0 0;
   text-align: left;
   padding: 11px;
   color: #555555;
@@ -120,12 +127,12 @@ tr:hover{
 }
 
 thead{
-  border-radius: 25px;
+  @include prefix(border-radius,25px,webkit moz);
   color: #666666;
 }
 
 #roundtable{
-  border-radius: 5px;
+  @include prefix(border-radius,5px,webkit moz);
   border: 1px solid $border-color;
   overflow: hidden;
   max-width: 940px;
@@ -134,17 +141,11 @@ thead{
 
 //pagination buttons style
 @mixin pagbutton($color-from, $color-to) {
-  background-image: -webkit-linear-gradient(top, $color-from, $color-to);
-  background-image: -moz-linear-gradient(top, $color-from, $color-to);
-  background-image: -ms-linear-gradient(top, $color-from, $color-to);
-  background-image: -o-linear-gradient(top, $color-from, $color-to);
-  background-image: linear-gradient(to bottom, $color-from, $color-to);
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  @include mixin-linear-gradient(top, $color-from, $color-to);
+  @include prefix(border-radius,3px,webkit moz);
   color: #717171;
   font-size: 12px;
-  padding: 6px 10px 6px 10px;
+  padding: 5px 9px 5px 9px;
   border: solid #bababa 1px;
   text-decoration: none;
   font-weight: bold;
@@ -162,13 +163,11 @@ thead{
 
 //clicked button style
 .clickedBtn{
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
+  @include prefix(border-radius,3px,webkit moz);
   color: #f2f2f2;
   font-size: 12px;
   background: #686868;
-  padding: 5px 10px 6px 10px;
+  padding: 4px 8px 5px 8px;
   border: solid #565656 1px;
   text-decoration: none;
   text-shadow: 1px 1px 1px #666666;
@@ -188,15 +187,8 @@ input, button, submit { border:none; }
 
 //buttons style
 @mixin button($color-from, $color-to) {
-  background-image: -webkit-linear-gradient(top, $color-from, $color-to);
-  background-image: -moz-linear-gradient(top, $color-from, $color-to);
-  background-image: -ms-linear-gradient(top, $color-from, $color-to);
-  background-image: -o-linear-gradient(top, $color-from, $color-to);
-  background-image: linear-gradient(to bottom, $color-from, $color-to);
-  -webkit-border-radius: 3px;
-  -moz-border-radius: 3px;
-  border-radius: 3px;
-  font-family: Arial;
+  @include mixin-linear-gradient(top, $color-from, $color-to);
+  @include prefix(border-radius,3px,webkit moz);
   font-size: 12px;
   padding: 8px 20px 8px 20px;
   text-decoration: none;
@@ -208,34 +200,33 @@ input, button, submit { border:none; }
 #searchButton {
   @include button(#6ba1f3,#2278f0);
   color: #ffffff;
+  font-weight: 600;
 }
 
 #searchButton:hover {
   @include button(#5390ed,#1f72de);
+  font-weight: 600;
 }
 
 #resetButton {
   @include button(#f1f1f1,#c4c4c4);
+  padding: 6px 20px 8px 20px;
   color: #494949;
 }
 
 #resetButton:hover {
   @include button(#e8e8e8,#bdbdbd);
+  padding: 6px 20px 8px 20px;
+  color: #494949;
 }
 
 //pound style
 @mixin pound($color-from, $color-to) {
-  background-image: -webkit-linear-gradient(top, $color-from, $color-to);
-  background-image: -moz-linear-gradient(top, $color-from, $color-to);
-  background-image: -ms-linear-gradient(top, $color-from, $color-to);
-  background-image: -o-linear-gradient(top, $color-from, $color-to);
-  background-image: linear-gradient(to bottom, $color-from, $color-to);
-  -webkit-border-radius: 60px;
-  -moz-border-radius: 60px;
-  border-radius: 60px;
-  font-family: Arial;
-  font-size: 15px;
-  padding: 2px 8px 2px 8px;
+  @include mixin-linear-gradient(top, $color-from, $color-to);
+  @include prefix(border-radius,60px,webkit moz);
+  font-family: 'Open Sans', sans-serif;
+  font-size: 14px;
+  padding: 1px 7px 1px 7px;
   border: solid #8b8b8b 1px;
   text-decoration: none;
   font-weight: 800;
@@ -256,9 +247,8 @@ input, button, submit { border:none; }
 }
 
 #poundrating{
-  width: 180px;
+  width: 160px;
   padding-left: 20px;
-  min-width: 100px;
 }
 
 #referencetab{
@@ -277,19 +267,19 @@ input, button, submit { border:none; }
   min-width: 100px;
 }
 
-//modal window style
+//modal window style---------------------------------------------------------------------------------------------------
 .modal {
-  display: none; /* Hidden by default */
-  position: fixed; /* Stay in place */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
+  display: none;
+  position: fixed;
+  z-index: 1;
+  padding-top: 100px;
   left: 0;
   top: 0;
-  width: 100%; /* Full width */
-  height: 100%; /* Full height */
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
-  background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgb(0,0,0);
+  background-color: rgba(0,0,0,0.4);
 }
 
 /* Modal Content */
@@ -300,7 +290,7 @@ input, button, submit { border:none; }
   padding: 20px;
   border: 1px solid #888;
   max-width: 600px;
-  border-radius: 5px;
+  @include prefix(border-radius,5px,webkit moz);
   border: 1px solid $border-color;
   -webkit-box-shadow: 0 0 5px 3px #777;
   -moz-box-shadow: 0 0 5px 3px #777;
@@ -313,7 +303,7 @@ input, button, submit { border:none; }
   float: right;
   font-size: 15px;
   font-weight: bold;
-  padding:0px;
+  padding:0;
   margin-left: 10px;
 }
 
@@ -326,12 +316,12 @@ input, button, submit { border:none; }
 
 .modaltable tr td{
   border: 1px solid $border-color;
-  border-radius: 3px;
+  @include prefix(border-radius,3px,webkit moz);
   padding:15px;
 }
 
 .modal-table{
   border: 1px solid $border-color;
-  border-radius: 3px;
+  @include prefix(border-radius,3px,webkit moz);
   overflow: hidden;
 }
