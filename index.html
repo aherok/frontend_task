@@ -10,46 +10,47 @@
 <script src="js/main_script.js"></script>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <link href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,800" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css?family=Open+Sans:700" rel="stylesheet">
 
 <body onload="resetFuntion(), reciveData()">
 
 <div id="maincontainer0">
-<div id="maincontainer">
+    <div id="maincontainer">
 
-<div id="maintitle">Where your money goes</div>
-<div id="subtitle">Payments made by Chichester District Council to individual suppliers with a value over £500 made within October.</div>
+        <div id="maintitle">Where your money goes</div>
+        <div id="subtitle">Payments made by Chichester District Council to individual suppliers with a value over £500 made within October.</div>
 
-<div id="search">
-<input type="text" id="inputText" placeholder="Search suppliers">
-<select id="inputrating" oninput = "reciveData()">
-    <option value="0">Select Pound Rating</option>
-    <option value="1">1</option>
-    <option value="2">2</option>
-    <option value="3">3</option>
-    <option value="4">4</option>
-    <option value="5">5</option>
-</select>
-<button id="resetButton" onclick = "resetFuntion()">Reset</button>
-<button id="searchButton">Search</button>
-</div>
+        <div id="search">
+            <input type="text" id="inputText" placeholder="Search suppliers">
+            <select id="inputrating" oninput = "reciveData()">
+                <option value="0">Select Pound Rating</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+            </select>
+            <button id="resetButton" onclick = "resetFuntion()">Reset</button>
+            <button id="searchButton">Search</button>
+        </div>
 
-<div id="roundtable">
-<table id = "tableId" class="table table-bordered">
-    <thead>
-    <tr>
-        <th style="text-align: left">Supplier</th>
-        <th>Pound Rating</th>
-        <th>Reference</th>
-        <th>Value</th>
-    </tr>
-    </thead>
-    <tbody id="maintable"></tbody>
-</table>
-</div>
+        <div id="roundtable">
+            <table id = "tableId" class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th style="text-align: left">Supplier</th>
+                            <th>Pound Rating</th>
+                            <th>Reference</th>
+                            <th>Value</th>
+                        </tr>
+                    </thead>
+                <tbody id="maintable"></tbody>
+            </table>
+        </div>
 
-<div id="paggination"></div>
+        <div id="paggination"></div>
 
-</div>
+    </div>
 </div>
 
 
@@ -58,14 +59,13 @@
     <!-- Modal content -->
     <div class="modal-content">
         <div class="modal-table">
-        <table class="modaltable">
-            <tr><td>Supplier: <td class="modalbox-supp"></td></td></tr>
-            <tr><td>Pound Rating: <td class="modalbox-pound"></td></td></tr>
-            <tr><td>Reference: <td class="modalbox-ref"></td></td></td></tr>
-            <tr><td>Value: <td class="modalbox-value"></td></td></td></tr>
-        </table>
+            <table class="modaltable">
+                <tr><td>Supplier: <td class="modalbox-supp"></td></td></tr>
+                <tr><td>Pound Rating: <td class="modalbox-pound"></td></td></tr>
+                <tr><td>Reference: <td class="modalbox-ref"></td></td></td></tr>
+                <tr><td>Value: <td class="modalbox-value"></td></td></td></tr>
+            </table>
         </div>
-
         <span class="close">CLOSE</span>
     </div>
 </div>
